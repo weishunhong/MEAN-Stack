@@ -9,7 +9,7 @@ var app = express();
 var JWT_SECRET = 'catsmeow';
 
 var db = null;
-MongoClient.connect(process.env.MONGOLAB_URI || "mongodb://localhost:27017/wilsons", function(err, dbconn) {
+MongoClient.connect(process.env.MONGOLAB_URI || "mongodb://localhost:27017/wilsons" || "mongodb://wilsonhong:Wilson117@ds145997.mlab.com:45997/heroku_6vd0vdjt", function(err, dbconn) {
     if (!err) {
         console.log("We are connected");
         db = dbconn;
@@ -102,6 +102,6 @@ app.put('/users/signin', function(req, res, next) {
 });
 
 
-app.listen(process.env.PORT, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log('Example app listening on port 3000!');
 });
