@@ -4,12 +4,15 @@ var ObjectId = require('mongodb').ObjectId;
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
 var jwt = require('jwt-simple');
+var morgan = require('morgan');
 var app = express();
+
+app.use(morgan(':method :url :response-time'));
 
 var JWT_SECRET = 'catsmeow';
 
 var db = null;
-MongoClient.connect(process.env.MONGOLAB_URI || "mongodb://localhost:27017/wilsons" || "mongodb://wilsonhong:Wilson117@ds145997.mlab.com:45997/heroku_6vd0vdjt", function(err, dbconn) {
+MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/wilsons", function(err, dbconn) {
     if (!err) {
         console.log("We are connected");
         db = dbconn;
