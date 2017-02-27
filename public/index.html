@@ -1,9 +1,11 @@
 <html ng-app="wilsons">
 
 <head>
+    <base href="/">
     <title>Wilson</title>
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://localhost:80/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="angular.min.js"></script>
     <script type="text/javascript" src="angular-route.js"></script>
     <script type="text/javascript" src="angular-cookies.js"></script>
@@ -14,12 +16,23 @@
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html',
-                controller: 'HomeController'
+                controller: 'HomeController',
             })
             .when('/signup', {
                 templateUrl: 'signup.html',
-                controller: 'SignupController'
+                controller: 'SignupController',
+            })
+            .when('/audittrail', {
+                templateUrl: 'audittrail.html',
+                controller: 'AuditTrailController',
+            })
+            .when('/404', {
+                templateUrl: '/404.html',
+            })
+            .otherwise({
+                redirectTo: '/404',
             });
+        $locationProvider.html5Mode(true);
     });
 
     app.run(function($rootScope, $cookies) {
@@ -31,7 +44,21 @@
 
     app.controller('HomeController', function($rootScope, $scope, $http, $cookies) {
 
+        var socket = io.connect('http://localhost');
+        socket.on('connect', function(socket) {
+            console.log('Connected!');
+        });
+
+        socket.on('newMeow', function(data) {
+            getMeows();
+        })
+
         $scope.submitNewMeow = function() {
+
+            if ($scope.newMeow.length < 5) {
+                return alert('meow must be 5 chars');
+            }
+
             $http.post('/meows', {
                 newMeow: $scope.newMeow
             }, {
@@ -70,6 +97,16 @@
             });
         };
 
+        $scope.resetPassword = function() {
+            $http.put('/users/resetPassword', {
+                resetEmail: $scope.resetEmail
+            }).then(function(res) {
+                alert('Your new password has been email to you.');
+            }, function(err) {
+                alert('There was a problem!');
+            });
+        };
+
         $scope.logout = function() {
             $cookies.remove('token');
             $cookies.remove('currentUser');
@@ -90,19 +127,32 @@
         $scope.submitSignup = function() {
             var newUser = {
                 username: $scope.username,
-                password: $scope.password
+                password: $scope.password,
+                email: $scope.email
             };
             $http.post('/users', newUser).then(function() {
                 alert('success');
             });
         }
     });
+
+    app.controller('AuditTrailController', function($scope, $http) {
+        $scope.auditTrailEvents = [];
+
+        function getEvents() {
+            $http.get('/auditTrailEvents').then(function(response) {
+                $scope.auditTrailEvents = response.data;
+            });
+        };
+
+        getEvents();
+    });
     </script>
 </head>
 
 <body>
     <div class="title-box">
-        <h1 class="page-title"><a href="#/">Wilsons</a></h1>
+        <h1 class="page-title"><a href="/">Wilsons</a></h1>
     </div>
     <div ng-view></div>
 </body>

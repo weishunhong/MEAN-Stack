@@ -16,7 +16,16 @@
             <button type="button" class="btn btn-primary btn-lg" ng-click="signin()">Sign In</button>
             <br>
             <br>
-            <a href="#/signup">Not a member? Signup</a>
+            <br>
+            <h5>Forget Password?</h5>
+            <div class="input-group">
+                <input type="email" class="form-control" size="30" placeholder="Email" ng-model="resetEmail">
+            </div>
+            <br>
+            <button type="button" class="btn btn-primary btn-lg" ng-click="resetPassword()">Reset</button>
+            <br>
+            <br>
+            <a href="/signup">Not a member? Signup</a>
         </div>
         <div ng-show="currentUser">
             Hello, {{ currentUser }}.
@@ -26,6 +35,7 @@
         </div>
     </div>
     <div class="col-md-8">
+        <div class="pull-right"><a href="/audittrail">Audit Trail</a></div>
         <div class="new-meow" ng-show="currentUser">
             <input type="text" class="form-control" ng-model="newMeow" placeholder="What do you have to meow today?">
             <button type="button" class="btn" ng-click="submitNewMeow()">Submit</button>
