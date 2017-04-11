@@ -1,5 +1,5 @@
 {
-  "name": "mean",
+  "name": "mean-stack",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.3.0",
