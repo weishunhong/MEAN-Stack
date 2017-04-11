@@ -1,5 +1,5 @@
 {
-  "name": "wilsons",
+  "name": "mean",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.3.0",
