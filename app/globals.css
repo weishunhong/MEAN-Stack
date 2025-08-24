@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.feed {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 50px;
+  min-height: 1000px;
+}
+
+.page-title {
+  margin: auto;
+  vertical-align: middle;
+  line-height: 200px;
+  font-family: 'Arial';
+  font-size: 40px;
+  background-color: rgba(75, 75, 75, 0.5);
+}
+
+.page-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.title-box {
+  background-image: url('/kitten.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.new-meow {
+  border: 1px solid #333;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.meow-text {
+  font-size: 26px;
+}
+
+.meow-user {
+  color: #666;
+}
+
+.user-icon {
+  font-size: 26px;
+}
+
+.login-box {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.gray-meow {
+  background-color: #ddd;
+}
+
+.meow-panel {
+  border: 1px solid #333;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.meow-panel:nth-child(even) {
+  background-color: #ddd;
+} 
