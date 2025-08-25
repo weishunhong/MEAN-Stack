@@ -24,30 +24,34 @@ This project has been migrated from a MEAN stack (MongoDB, Express, Angular, Nod
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - MongoDB (local or cloud instance)
 - npm or yarn
 
 ### Installation
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Set up environment variables:
-Create a `.env.local` file in the root directory:
+   Create a `.env.local` file in the root directory:
+
 ```env
 MONGODB_URI=mongodb://localhost:27017/wilsons
 JWT_SECRET=your-secret-key-here
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
 
 4. Start the Socket.io server (in a separate terminal):
+
 ```bash
 node server/socket-server.js
 ```
@@ -87,17 +91,20 @@ The application will be available at `http://localhost:3000`
 ## Migration Notes
 
 ### From Angular to React
+
 - Replaced Angular controllers with React hooks
 - Converted Angular templates to JSX
 - Replaced Angular services with fetch API calls
 - Migrated from Angular routing to Next.js routing
 
 ### From Express to Next.js API Routes
+
 - Converted Express routes to Next.js API routes
 - Maintained the same database models and business logic
 - Kept the same authentication flow with JWT
 
 ### UI Improvements
+
 - Added responsive design with Tailwind CSS
 - Improved form styling and user experience
 - Better error handling and user feedback
@@ -115,6 +122,7 @@ The application will be available at `http://localhost:3000`
 ### Database Setup
 
 The application uses MongoDB with the following collections:
+
 - `users` - User accounts
 - `meows` - User posts
 - `auditevents` - Audit trail events
@@ -122,11 +130,13 @@ The application uses MongoDB with the following collections:
 ## Deployment
 
 1. Build the application:
+
 ```bash
 npm run build
 ```
 
 2. Start the production server:
+
 ```bash
 npm start
 ```
